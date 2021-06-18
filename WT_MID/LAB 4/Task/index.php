@@ -4,51 +4,51 @@ $name ="";
 $error_n= "";
 $error = false;
 
-if(isset($_POST["submit"]))
-{
-    if (empty($_POST["name"]))
+    if(isset($_POST["submit"]))
     {
-        $error = true;
-        $error_n= "Empty";
-       // echo "hello";
-        
+        if (empty($_POST["name"]))
+        {
+            $error = true;
+            $error_n= "Empty";
+        // echo "hello";
+            
 
+        }
+        elseif(is_numeric($_POST["name"]))
+        {
+            $error_n= "number no allow";
+    
+        }
+        else
+        {
+            $name =htmlspecialchars($_POST["name"]);
+        }
     }
-    elseif(is_numeric($_POST["name"]))
-    {
-        $error_n= "number no allow";
- 
-    }
-    else
-    {
-        $name =htmlspecialchars($_POST["name"]);
-    }
-}
 
 $uname ="";
 $error_un= "";
 $uerror = false;
 
-if(isset($_POST["submit"]))
-{
-    if (empty($_POST["uname"]))
+    if(isset($_POST["submit"]))
     {
-        $uerror = true;
-        $error_un= "Empty";
-       // echo "hello";
-        
+        if (empty($_POST["uname"]))
+        {
+            $uerror = true;
+            $error_un= "Empty";
+        // echo "hello";
+            
 
+        }
+        elseif(is_numeric($_POST["uname"]))
+        {
+            $error_un= "number no allow";
+    
+        }
+        else
+        {
+            $uname =htmlspecialchars($_POST["uname"]);
+        }
     }
-    elseif(is_numeric($_POST["uname"]))
-    {
-        $error_un= "number no allow";
- 
-    }
-    else
-    {
-        $uname =htmlspecialchars($_POST["uname"]);
-    }
-}
 
 $pname ="";
 $error_p= "";
@@ -56,86 +56,86 @@ $perror = false;
 
 
 
-function PasswordCheck($pname) {
-  global $error_p;
-    $hasSpecialChar = false;
-    $hasUpperCase = false;
-    $hasLowerCase = false;
-    $hasLength = false;
+    function PasswordCheck($pname) {
+        global $error_p;
+        $hasSpecialChar = false;
+        $hasUpperCase = false;
+        $hasLowerCase = false;
+        $hasLength = false;
 
 
-    if(strlen($pname) >= 8) {
-        $hasLength = true;
-    }
-        //$str = "Hello world. It's a beautiful day.";
-    $split = str_split($pname,1);
-    //$array = array($split);
-    for ($i = 0; $i <count($split);$i++)
-    {
-        if( "#" == $split[$i] || "!"==$split[$i]){
-        //echo $split[$i]."<br>";
-        $hasSpecialChar = true;
-        // break;
+        if(strlen($pname) >= 8) {
+            $hasLength = true;
         }
+            //$str = "Hello world. It's a beautiful day.";
+        $split = str_split($pname,1);
+        //$array = array($split);
+        for ($i = 0; $i <count($split);$i++)
+        {
+            if( "#" == $split[$i] || "!"==$split[$i]){
+            //echo $split[$i]."<br>";
+            $hasSpecialChar = true;
+            // break;
+            }
 
-        if(ctype_upper($split[$i])) {
-            $hasUpperCase = true;
-        }
+            if(ctype_upper($split[$i])) {
+                $hasUpperCase = true;
+            }
 
-        if(ctype_lower($split[$i])) {
-            $hasLowerCase = true;
-        }
-        // else
-        // {
-        //     // $error_p= "Special characters are Missing !! ";
-        // //echo "not found";
-        // // break;
-        //     $hasSpecialChar = true;
-        // }
+            if(ctype_lower($split[$i])) {
+                $hasLowerCase = true;
+            }
+            // else
+            // {
+            //     // $error_p= "Special characters are Missing !! ";
+            // //echo "not found";
+            // // break;
+            //     $hasSpecialChar = true;
+            // }
 
+            
         
+        } 
+
+            if($hasLength && $hasSpecialChar && $hasUpperCase && $hasLowerCase) {
+                return 1;
+            } else {
+
+                $error_p = "some thing Wrong...";
+                return 0;
+            }
+
+
+
     
-    } 
-
-    if($hasLength && $hasSpecialChar && $hasUpperCase && $hasLowerCase) {
-        return 1;
-    } else {
-
-        $error_p = "some thing Wrong...";
-        return 0;
     }
-
-
-
-   
-}
         
 
-if(isset($_POST["submit"]))
-{
-    echo PasswordCheck(htmlspecialchars($_POST["password"]));
-    if (empty($_POST["password"]))
+    if(isset($_POST["submit"]))
     {
-        $perror = true;
-        $error_p= "Empty";
-       // echo "hello";
+        echo PasswordCheck(htmlspecialchars($_POST["password"]));
+            if (empty($_POST["password"]))
+            {
+                $perror = true;
+                $error_p= "Empty";
+            // echo "hello";
+                
+
+            }
+            elseif(is_numeric($_POST["password"]))
+            {
+                $error_p= "number no allow";
         
+            }
+            
+            // elseif()
+            // {
+                
 
+
+
+            // }
     }
-    elseif(is_numeric($_POST["password"]))
-    {
-        $error_p= "number no allow";
- 
-    }
-    
-    // elseif()
-    // {
-        
-
-
-
-    // }
-}
 
 $cpname ="";
 $error_cp= "";
@@ -172,195 +172,232 @@ $mail ="";
 $error_e= "";
 $eerror = false;
 
-if(isset($_POST["submit"]))
-{
-    if (empty($_POST["mail"]))
+    if(isset($_POST["submit"]))
     {
-        $eerror = true;
-        $error_e= "Empty";
-       // echo "hello";
-        
+        if (empty($_POST["mail"]))
+        {
+            $eerror = true;
+            $error_e= "Empty";
+        // echo "hello";
+            
 
-    }
-    elseif(is_numeric($_POST["mail"]))
-    {
-        $error_e= "number no allow";
- 
-    }
-    else
-    {
-        $mail =htmlspecialchars($_POST["mail"]);
-    }
-}  
+        }
+        elseif(is_numeric($_POST["mail"]))
+        {
+            $error_e= "number no allow";
+    
+        }
+        else
+        {
+            $mail =htmlspecialchars($_POST["mail"]);
+        }
+    }  
 
 $code ="";
 $error_code= "";
 $code_error = false;
 
-if(isset($_POST["submit"]))
-{
-    if (empty($_POST["code"]))
+    if(isset($_POST["submit"]))
     {
-        $code_error = true;
-        $error_code= "Empty";
-       // echo "hello";
-        
+        if (empty($_POST["code"]))
+        {
+            $code_error = true;
+            $error_code= "Empty";
+        // echo "hello";
+            
 
-    }
-    // elseif(is_numeric($_POST["code"]) )
-    // {
-    //     $error_code= "number no allow";
- 
-    // }
-    else
-    {
-        $code =htmlspecialchars($_POST["code"]);
-    }
-} 
+        }
+        // elseif(is_numeric($_POST["code"]) )
+        // {
+        //     $error_code= "number no allow";
+    
+        // }
+        else
+        {
+            $code =htmlspecialchars($_POST["code"]);
+        }
+    } 
 
 $phone ="";
 $error_phone= "";
 $phone_error = false;
 
-if(isset($_POST["submit"]))
-{
-    if (empty($_POST["phone"]))
+    if(isset($_POST["submit"]))
     {
-        $phone_error = true;
-        $error_phone= "Empty";
-    //    // echo "hello";
-        
-        
+        if (empty($_POST["phone"]))
+        {
+            $phone_error = true;
+            $error_phone= "Empty";
+        //    // echo "hello";
+            
+            
 
-    }
-    elseif(is_numeric($_POST["phone"]) )
-    {
-        $phone =htmlspecialchars($_POST["phone"]);
- 
-    }
-    else
-    {
-        // $phone =htmlspecialchars($_POST["phone"]);
-        $error_phone= "Charectar is not allow";
+        }
+        elseif(is_numeric($_POST["phone"]) )
+        {
+            $phone =htmlspecialchars($_POST["phone"]);
+    
+        }
+        else
+        {
+            // $phone =htmlspecialchars($_POST["phone"]);
+            $error_phone= "Charectar is not allow";
 
-    }
-} 
+        }
+    } 
 
 
 $adress ="";
 $error_adress= "";
 $adress_error = false;
 
-if(isset($_POST["submit"]))
-{
-    if (empty($_POST["adress"]))
+    if(isset($_POST["submit"]))
     {
-        $adress_error = true;
-        $error_adress= "Empty";
-    //    // echo "hello";
-        
-        
+        if (empty($_POST["adress"]))
+        {
+            $adress_error = true;
+            $error_adress= "Empty";
+        //    // echo "hello";
+            
+            
 
-    }
-    elseif(is_numeric($_POST["adress"]) )
-    {
-        //$phone =htmlspecialchars($_POST["adress"]);
-        $error_adress= "number is not allow";
- 
-    }
-    else
-    {
-         $adress =htmlspecialchars($_POST["adress"]);
-        //$error_adress= "Charectar is not allow";
+        }
+        elseif(is_numeric($_POST["adress"]) )
+        {
+            //$phone =htmlspecialchars($_POST["adress"]);
+            $error_adress= "number is not allow";
+    
+        }
+        else
+        {
+            $adress =htmlspecialchars($_POST["adress"]);
+            //$error_adress= "Charectar is not allow";
 
-    }
-} 
+        }
+    } 
 
 $city ="";
 $error_city= "";
 $city_error = false;
 
-if(isset($_POST["submit"]))
-{
-    if (empty($_POST["city"]))
+    if(isset($_POST["submit"]))
     {
-        $city_error = true;
-        $error_city= "Empty";
-    //    // echo "hello";
-        
-        
+        if (empty($_POST["city"]))
+        {
+            $city_error = true;
+            $error_city= "Empty";
+        //    // echo "hello";
+            
+            
 
-    }
-    elseif(is_numeric($_POST["city"]) )
-    {
-        //$phone =htmlspecialchars($_POST["adress"]);
-        $error_city= "number is not allow";
- 
-    }
-    else
-    {
-         $city =htmlspecialchars($_POST["city"]);
-        //$error_adress= "Charectar is not allow";
+        }
+        elseif(is_numeric($_POST["city"]) )
+        {
+            //$phone =htmlspecialchars($_POST["adress"]);
+            $error_city= "number is not allow";
+    
+        }
+        else
+        {
+            $city =htmlspecialchars($_POST["city"]);
+            //$error_adress= "Charectar is not allow";
 
-    }
-} 
+        }
+    } 
 
 $state ="";
 $error_state= "";
 $state_error = false;
 
-if(isset($_POST["submit"]))
-{
-    if (empty($_POST["state"]))
+    if(isset($_POST["submit"]))
     {
-        $state_error = true;
-        $error_state= "Empty";
-    //    // echo "hello";
-        
-        
+        if (empty($_POST["state"]))
+        {
+            $state_error = true;
+            $error_state= "Empty";
+        //    // echo "hello";
+            
+            
 
-    }
-    elseif(is_numeric($_POST["state"]) )
-    {
-        //$phone =htmlspecialchars($_POST["adress"]);
-        $error_state= "number is not allow";
- 
-    }
-    else
-    {
-         $state =htmlspecialchars($_POST["state"]);
-        //$error_adress= "Charectar is not allow";
+        }
+        elseif(is_numeric($_POST["state"]) )
+        {
+            //$phone =htmlspecialchars($_POST["adress"]);
+            $error_state= "number is not allow";
+    
+        }
+        else
+        {
+            $state =htmlspecialchars($_POST["state"]);
+            //$error_adress= "Charectar is not allow";
 
-    }
-} 
+        }
+    } 
 
 $pcode ="";
 $error_pcode= "";
 $pcode_error = false;
 
-if(isset($_POST["submit"]))
-{
-    if (empty($_POST["pcode"]))
+    if(isset($_POST["submit"]))
     {
-        $pcode_error = true;
-        $error_pcode= "Empty";
-    //    // echo "hello";
-        
-        
+        if (empty($_POST["pcode"]))
+        {
+            $pcode_error = true;
+            $error_pcode= "Empty";
+        //    // echo "hello";
+            
+            
+
+        }
+        elseif(is_numeric($_POST["pcode"]) )
+        {
+           
+            $pcode =htmlspecialchars($_POST["pcode"]);
+    
+        }
+        else
+        {
+            // $phone =htmlspecialchars($_POST["phone"]);
+            $error_pcode= "Charectar is not allow";
+
+        }
+    }
+
+    function dayPrint()
+    {
+        for($d = 0; $d<= 30;$d++)
+        {
+            // $day = array($d[$d]);
+            echo "<option>$d</option>";
+        }
+       // $day = array("1","2","3","4","5","6","7","8","9");
+
 
     }
-    elseif(is_numeric($_POST["pcode"]) )
+
+    function monthPrint()
     {
-        $pcode =htmlspecialchars($_POST["pcode"]);
- 
-    }
-    else
-    {
-        // $phone =htmlspecialchars($_POST["phone"]);
-        $error_pcode= "Charectar is not allow";
+        $months = array("January","February","March","April","May","Jun","July","August","September","October","November","December");
+
+        foreach($months as $m)
+        {
+            echo "<option>$m</option>";
+        }
 
     }
-}
+
+
+    function yearPrint()
+    {
+        for($y = 1990; $y<= 2021;$y++)
+        {
+            // $day = array($d[$d]);
+            echo "<option>$y</option>";
+        }
+       // $day = array("1","2","3","4","5","6","7","8","9");
+
+
+    }
 
 
 
@@ -433,14 +470,23 @@ if(isset($_POST["submit"]))
                         <td>
                             <select name="day">
                                 <option value="">Day</option>
+                                <?php
+                                     dayPrint();
+                                ?>
                              </select>
 
                              <select name="month">
                                  <option value="">Month</option> 
+                                 <?php
+                                     monthPrint();
+                                ?>
                              </select>
 
                             <select name="year"> 
                                 <option value="">Year</option>
+                                <?php
+                                     yearPrint();
+                                ?>
                             </select>
 
                         </td>
