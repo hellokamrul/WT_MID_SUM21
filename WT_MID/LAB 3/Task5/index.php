@@ -1,8 +1,12 @@
-    <html>
+<html>
     <head></head>
+
     <body>
         <?php
-        $backColor="green"; $fontColor="red"; $imageWidth="80px"; $imageHeight="80px";
+            $backColor="green"; 
+            $fontColor="red";
+            $imageWidth="80px"; 
+            $imageHeight="80px";
         ?>
         <table>
             <tr>
@@ -17,4 +21,5 @@
             </tr>
         </table>
     </body>
-    </html>
+    
+</html>
