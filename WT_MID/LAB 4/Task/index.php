@@ -19,6 +19,7 @@ $error = false;
             $error_n= "number no allow";
     
         }
+        
         else
         {
             $name =htmlspecialchars($_POST["name"]);
@@ -32,22 +33,29 @@ $uerror = false;
     if(isset($_POST["submit"]))
     {
         if (empty($_POST["uname"]))
-        {
-            $uerror = true;
-            $error_un= "Empty";
-        // echo "hello";
-            
+            {
+                $uerror = true;
+                $error_un= "Empty";
+            // echo "hello";
+            }
 
-        }
         elseif(is_numeric($_POST["uname"]))
-        {
-            $error_un= "number no allow";
-    
-        }
+            {
+                $error_un= "number no allow";
+        
+            }
+
+        elseif(!strlen($_POST["uname"]) >= 6) 
+            {
+
+                $error_un= " at least 6 characters ";
+
+            }
+
         else
-        {
-            $uname =htmlspecialchars($_POST["uname"]);
-        }
+            {
+                $uname =htmlspecialchars($_POST["uname"]);
+            }
     }
 
 $pname ="";
@@ -394,7 +402,7 @@ $pcode_error = false;
             // $day = array($d[$d]);
             echo "<option>$y</option>";
         }
-       // $day = array("1","2","3","4","5","6","7","8","9");
+       
 
 
     }
@@ -420,6 +428,7 @@ $pcode_error = false;
 <td><input type="text"name ="name"><span style="color:red"><?php echo $error_n; ?></span> </td>
 
 </tr>
+
 <tr>
     <td> UserName : </td>
     <td><input type="text"name ="uname"><span style="color:red"><?php echo $error_un; ?></span> </td>
@@ -550,3 +559,27 @@ $pcode_error = false;
 
 
 </html>
+
+<?php
+
+
+
+echo $name;
+
+echo $uname;
+echo $mail;
+echo $code;
+echo $phone;
+echo $adress;
+echo $city;
+echo $state;
+
+echo $pcode;
+
+
+
+
+
+
+
+?>
